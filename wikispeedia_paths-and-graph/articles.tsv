@@ -1,15 +1,3 @@
-# The list of all articles.
-# Article names are URL-encoded; e.g., in Java they can be decoded using java.net.URLDecoder.decode(articleName, "UTF-8").
-# FORMAT:   article
-#
-# When publishing on this data set, please cite:
-# (1) Robert West and Jure Leskovec:
-#     Human Wayfinding in Information Networks.
-#     21st International World Wide Web Conference (WWW), 2012.
-# (2) Robert West, Joelle Pineau, and Doina Precup:
-#     Wikispeedia: An Online Game for Inferring Semantic Distances between Concepts.
-#     21st International Joint Conference on Artificial Intelligence (IJCAI), 2009.
-
 %C3%81ed%C3%A1n_mac_Gabr%C3%A1in
 %C3%85land
 %C3%89douard_Manet
