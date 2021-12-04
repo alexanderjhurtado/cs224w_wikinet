@@ -1,0 +1,29 @@
+import networkx as nx
+import pandas as pd
+
+G = nx.read_gml("data_from_paper/graph.gml")
+nodes = pd.read_csv("data_from_snap/articles.tsv", sep="\t", header=None)
+
+new_node_features = {}
+with open("data_from_paper/nodes.txt") as file:
+	for line in file:
+		line = line.strip().split("\t")
+		node_id, out_degree, in_degree = int(line[0]), float(line[1]), float(line[2])
+		node_label = nodes.iloc[node_id][0]
+		new_node_features[node_label] = { "out_degree": out_degree, "in_degree": in_degree }
+
+new_edge_features = {}
+with open("data_from_paper/edges.txt") as file:
+	for line in file:
+		line = line.strip().split("\t")
+		src_node_id, dst_node_id, tf_idf, num_link_clicked = int(line[1]), int(line[2]), float(line[3]), float(line[4])
+		src_node_label, dst_node_label = nodes.iloc[src_node_id][0], nodes.iloc[dst_node_id][0]
+		new_edge_features[(src_node_label, dst_node_label)] = { "tf_idf": tf_idf, "num_link_clicked": num_link_clicked }
+
+nx.set_node_attributes(G, new_node_features)
+nx.set_edge_attributes(G, new_edge_features)
+
+nx.write_gml(G, "graph_with_features.gml")
+
+# nodes.txt reads (node_id, out_degree, in_degree)
+# edges.txt reads (edge_id, src_node_id, dst_node_id, tf_idf, num_link_clicked)
