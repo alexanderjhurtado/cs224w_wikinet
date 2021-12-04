@@ -24,6 +24,9 @@ with open("data_from_paper/nodes.txt") as file:
 			del G.nodes[node_label]["category2"]
 		if "category3" in G.nodes[node_label]:
 			del G.nodes[node_label]["category3"]
+		keys_to_remove = [x for x in G.nodes[node_label].keys() if x.startswith("path")]
+		for key in keys_to_remove:
+			del G.nodes[node_label][key]
 nx.set_node_attributes(G, new_node_features)
 
 new_edge_features = {}
