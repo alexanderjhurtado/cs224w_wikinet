@@ -1,4 +1,5 @@
 .DS_Store
+graph_with_features.gml
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
