@@ -2,7 +2,7 @@ import pandas as pd
 import csv
 
 # create cleaned up paths (list of article names)
-paths = pd.read_csv("data_from_snap/paths_finished.tsv", sep="\t", header=None, skiprows=16)
+paths = pd.read_csv("../data_from_snap/paths_finished.tsv", sep="\t", header=None, skiprows=16)
 paths = list(paths[3])
 newPaths = []
 for pathStr in paths:
@@ -26,7 +26,7 @@ with open("paths_cleaned.tsv", "r") as f:
 		paths.append(row)
 
 
-articles = pd.read_csv("data_from_snap/articles.tsv", sep="\t", header=None)
+articles = pd.read_csv("../data_from_snap/articles.tsv", sep="\t", header=None)
 
 memo = {}
 def getIndex(article):
@@ -57,7 +57,7 @@ for indexPath in finalPaths:
 	target = indexPath[-1]
 	finalData.append((data, target))
 
-with open("data_by_index.tsv", "w") as f:
+with open("paths_and_labels.tsv", "w") as f:
     wr = csv.writer(f, delimiter="\t")
     wr.writerows(finalData)
 
